@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" lang="pt-BR"
+      xmlns:c="http://java.sun.com/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      >
+
+    <h:head>
+        <title>BSPN-IntranetCorretor</title>
+        <link rel="stylesheet" type="text/css" href="./includes/css/styles.css" />
+        <script src="./includes/js/jquery-3.4.1.min.js"></script>
+        <script src="./includes/js/jquery.mask.js"></script>
+    </h:head>
+
+    <h:body>
+        <div class="container">
+            <a class="links" id="paralogin"></a>
+            <div class="content">
+                <div id="login">
+                    <h:form id="formLogin_Corretor">
+
+                        <h1><h:outputText id="h1" value="Acesso Corretor - Intranet" /></h1>
+                        <h2><h:outputText id="h3" value="#{loginMB.esperanca}" /></h2>
+                        <h3><h:outputText id="h2" value="Preencha os dados abaixo para seu acesso exclusivo." /></h3>
+
+                        <div class="bs-form_control">
+
+                            <h:outputText id="bs_login_cpf_cnpj" value="CPF/CNPJ*" />
+                            <h:inputText id="cpfOuCnpj" label="Login" value="#{loginMB.cpfCnpj}" required="true" onclick="mask_cpfouCnpj();"/>
+                            <h:outputText id="bs_login_cpf" value="CPF*" />
+                            <h:inputText id="corretor_cpf"  value="#{loginMB.cpf}"   onclick="mask_cpf();"  required="true" />
+
+                            <h:commandButton id="botao" value="Acessar" action="#{loginMB.searchWhiteList}" />
+
+                        </div>
+
+                        <div class="aviso">
+                            <p>
+                                <b><h2>Aviso importante:</h2></b><br /> Esta aplicação está
+                                gerando um log para acompanhamento e monitoramento de todas ações
+                                executadas por este usuário. É de sua inteira responsabilidade
+                                qualquer movimentação indevida, estando sujeito a questionamentos
+                                e medidas que se façam necessárias.
+                            </p>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+
+            function mask_cpfouCnpj() {
+
+                var options = {
+                    onKeyPress: function (cpf, ev, el, op) {
+                        var masks = ['000.000.000-000', '00.000.000/0000-00'];
+                        $('#formLogin_Corretor\\:cpfOuCnpj').mask((cpf.length > 14) ? masks[1] : masks[0], op);
+                    }
+                };
+                $('#formLogin_Corretor\\:cpfOuCnpj').length > 14 ? $('#formLogin_Corretor\\:cpfOuCnpj').mask('000.000.000-00#', options) : $('#formLogin_Corretor\\:cpfOuCnpj').mask('00.000.000/0000-00', options);
+            }
+            ;
+
+            function mask_cpf() {
+
+                var optionsCpf = {
+                    onKeyPress: function (cpf, ev, el, op) {
+                        var masks = ['000.000.000-000'];
+                        $('#formLogin_Corretor\\:corretor_cpf').mask(masks[0], op);
+                    }
+                };
+                $('#formLogin_Corretor\\:corretor_cpf').mask('000.000.000-00');
+            }
+
+
+
+        </script>
+
+    </h:body>
+</html>

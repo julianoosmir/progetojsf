@@ -1,0 +1,88 @@
+.bs-loading-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(255, 255, 255, .5);
+	z-index: 9999;
+}
+
+.bs-loading-overlay-show {
+	display: flex;
+}
+
+.bs-loading-overlay-hide {
+	display: none;
+}
+
+.modal {
+	margin: 0 auto;
+	padding: 56px;
+	text-align: center;
+	width: 100%;
+	top: 50%;
+	position: absolute;
+	left: 50%;
+	background-color: rgba(10, 23, 55, 0.5);
+}
+
+.modal-content {
+	background-color: #fff;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: max-content;
+	display: inline-block;
+}
+
+/* The Close Button */
+.close {
+	color: #aaaaaa;
+	float: right;
+}
+
+.close:hover, .close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+h3 {
+	font-size: 18px;
+	font-family: Bradesco Sans;
+	font-weight: bold;
+}
+
+p {
+	margin: 0px;
+	font-family: Bradesco Sans;
+	font-size: 16px;
+}
+
+.last-line {
+	margin: 20px;
+}
+
+.btn-back {
+	font-weight: bold;
+	padding: 7px;
+	background: #0B67BD;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	width: 74px;
+	height: 40px;
+	text-align: center;
+}
+
+.icon-alerta-erro {
+	font-size: 55px;
+	color: #E60935;
+}
+
+.top-block, .footer {
+	display: none;
+}
