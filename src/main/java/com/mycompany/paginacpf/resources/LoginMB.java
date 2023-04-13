@@ -9,24 +9,25 @@ import java.util.regex.Pattern;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 
+@Named
 @ManagedBean
-    public class LoginMB {
+@SessionScoped
+public class LoginMB {
 
     private String esperanca = "esperança";
 
     private String cpfCnpj;
 
     private String cpf;
-    
+
     private Boolean campoCpf;
     private Map<String, Boolean> erros;
     private Map<String, String> mensagens;
 
-    FacesContext context = FacesContext.getCurrentInstance();
-    String url = context.getExternalContext().getRequestContextPath();
-    
     @PostConstruct
     public void init() {
         this.campoCpf = false;
@@ -50,31 +51,38 @@ import javax.faces.context.FacesContext;
     }
 
     public void searchWhiteList() {
-        this.setEsperanca("funfou button searchWhiteList " + this.cpf);
+        this.setEsperanca("cpf : " + this.cpf + " e cnpj : " + this.cpfCnpj);
 
         this.campoCpf = true;
     }
 
-    public void listener() {    
+    public void listener() {
         this.setEsperanca("funfou listener ");
     }
 
-    public void doEfetuarLogin() throws IOException {
-               
+    public String doEfetuarLogin() throws IOException {
+        
+        FacesContext context = FacesContext.getCurrentInstance();
+        String url = context.getExternalContext().getRequestContextPath();
+        
         if (validarFormatocnpj(this.cpfCnpj)) {
-           this.setEsperanca("funfou cpf  "  + this.cpf );
-          context.getExternalContext().redirect(url + "/outrapagina.xhtml");
-            
-        } 
-        if(validarFormatocpf(this.cpfCnpj)) {
-            this.setEsperanca("funfou of");
-            context.getExternalContext().redirect(url + "/novapagina.html");
+            this.campoCpf = true;
         }
-          
-         this.setEsperanca("funfou cpf  "  + this.cpf );
-      
+        
+        if (validarFormatocpf(this.cpfCnpj)) {
+            context.getExternalContext().redirect(url + "/novapagina.html");
+            return "funfou";
+        }
+        
+        if (this.cpf != null && validarFormatocpf(this.cpf) && validarFormatocnpj(this.cpfCnpj)) {
+            this.setEsperanca(this.cpfCnpj + " e cpf  : " + this.cpf);
+            context.getExternalContext().redirect(url + "/outrapagina.xhtml");
+            return this.getEsperanca();
+        }
+
+        return this.getEsperanca();
     }
-    
+
     private boolean validarFormatocpf(final String cpf) {
 
         final String cpfcnpj_PATTERN = "([0-9]{3}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[-]?[0-9]{2})";

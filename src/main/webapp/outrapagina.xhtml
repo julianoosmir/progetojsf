@@ -21,20 +21,9 @@
                     <h:form id="formLogin_Corretor">
 
                         <h1><h:outputText id="h1" value="Acesso Corretor - Intranet" /></h1>
-                        <h2><h:outputText id="h3" value="#{loginMB.esperanca}" /></h2>
                         <h3><h:outputText id="h2" value="Preencha os dados abaixo para seu acesso exclusivo." /></h3>
-
-                        <div class="bs-form_control">
-
-                            <h:outputText id="bs_login_cpf_cnpj" value="CPF/CNPJ*" />
-                            <h:inputText id="cpfOuCnpj" label="Login" value="#{loginMB.cpfCnpj}" required="true" onclick="mask_cpfouCnpj();"/>
-                            <h:outputText id="bs_login_cpf" value="CPF*" />
-                            <h:inputText id="corretor_cpf"  value="#{loginMB.cpf}"   onclick="mask_cpf();"  required="true" />
-
-                            <h:commandButton id="botao" value="Acessar" action="#{loginMB.searchWhiteList}" />
-
-                        </div>
-
+                        
+                       <h1><h:outputText id="h3" value="#{loginMB.esperanca}" /></h1>
                         <div class="aviso">
                             <p>
                                 <b><h2>Aviso importante:</h2></b><br /> Esta aplicação está

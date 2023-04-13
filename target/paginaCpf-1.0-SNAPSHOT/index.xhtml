@@ -21,18 +21,17 @@
                     <h:form id="formLogin_Corretor">
 
                         <h1><h:outputText id="h1" value="Acesso Corretor - Intranet" /></h1>
-                        <h2><h:outputText id="h3" value="#{loginMB.esperanca}" /></h2>
                         <h3><h:outputText id="h2" value="Preencha os dados abaixo para seu acesso exclusivo." /></h3>
 
                         <div class="bs-form_control">
 
                             <h:outputText id="bs_login_cpf_cnpj" value="CPF/CNPJ*" />
-                            <h:inputText id="cpfOuCnpj" label="Login" value="#{loginMB.cpfCnpj}" required="true" onclick="mask_cpfouCnpj();"/>
+                            <h:inputText id="cpfOuCnpj" label="Login"  value="#{loginMB.cpfCnpj}" required="true" onclick="mask_cpfouCnpj();"/>
 
-                            <h:panelGroup id="insputCpfClient" rendered="#{loginMB.campoCpf}">
-                                <h:outputText id="bs_login_cpf" value="CPF*" />
-                                <h:inputText id="corretor_cpf"  value="#{loginMB.cpf}"   onclick="mask_cpf();"  required="true" />
-                            </h:panelGroup>
+                                <h:panelGroup id="insputCpfClient" rendered="#{loginMB.campoCpf}">
+                                    <h:outputText id="bs_login_cpf" value="CPF*" />
+                                    <h:inputText id="corretor_cpf"  value="#{loginMB.cpf}"   onclick="mask_cpf();"  required="true" />
+                                </h:panelGroup>
 
                             <h:commandButton id="botao" value="Acessar" action="#{loginMB.doEfetuarLogin}" />
 
