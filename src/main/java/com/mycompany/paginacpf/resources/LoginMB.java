@@ -1,5 +1,8 @@
 package com.mycompany.paginacpf.resources;
 
+import com.mycompany.paginacpf.model.DataForm;
+import com.mycompany.paginacpf.service.WhiteListService;
+
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -11,6 +14,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
@@ -25,12 +29,15 @@ public class LoginMB {
     private String cpf;
 
     private Boolean campoCpf;
+
+    private WhiteListService whiteListService;
     private Map<String, Boolean> erros;
     private Map<String, String> mensagens;
 
     @PostConstruct
     public void init() {
         this.campoCpf = false;
+        this.whiteListService = new WhiteListService();
         try {
 
             this.erros = new HashMap<String, Boolean>();
@@ -64,23 +71,34 @@ public class LoginMB {
         
         FacesContext context = FacesContext.getCurrentInstance();
         String url = context.getExternalContext().getRequestContextPath();
-        
-        if (validarFormatocnpj(this.cpfCnpj)) {
-            this.campoCpf = true;
-        }
-        
-        if (validarFormatocpf(this.cpfCnpj)) {
-            context.getExternalContext().redirect(url + "/novapagina.html");
-            return "funfou";
-        }
-        
-        if (this.cpf != null && validarFormatocpf(this.cpf) && validarFormatocnpj(this.cpfCnpj)) {
-            this.setEsperanca(this.cpfCnpj + " e cpf  : " + this.cpf);
-            context.getExternalContext().redirect(url + "/outrapagina.xhtml");
-            return this.getEsperanca();
-        }
+        try {
+            if (validarFormatocnpj(this.cpfCnpj)) {
+                this.campoCpf = this.whiteListService.runRequest(this.setDataForm()).getBody() instanceof Boolean ?
+                        (Boolean) this.whiteListService.runRequest(this.setDataForm()).getBody() : this.campoCpf;
+            }
 
+            if (validarFormatocpf(this.cpfCnpj)) {
+                context.getExternalContext().redirect(url + "/novapagina.html");
+                return "funfou";
+            }
+
+            if (this.cpf != null && validarFormatocpf(this.cpf) && validarFormatocnpj(this.cpfCnpj)) {
+                this.setEsperanca(this.cpfCnpj + " e cpf  : " + this.cpf);
+                context.getExternalContext().redirect(url + "/outrapagina.xhtml");
+                return this.getEsperanca();
+            }
+        } catch (IOException exception){
+            this.setEsperanca( exception.getMessage());
+
+        }
         return this.getEsperanca();
+    }
+
+    private DataForm setDataForm(){
+        DataForm dataForm = new DataForm();
+        dataForm.setCpfUsuario(this.cpf);
+        dataForm.setCpfCnpjPessoaVinculo(this.getCpfCnpj());
+        return dataForm;
     }
 
     private boolean validarFormatocpf(final String cpf) {

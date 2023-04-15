@@ -4,19 +4,32 @@
  */
 package com.mycompany.paginacpf.resources;
 
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ValueChangeEvent;
-import javax.faces.event.ValueChangeListener;
+public class Mydemo  {
 
-/**
- *
- * @author juliano.hein
- */
-public class Mydemo implements ValueChangeListener {
+    private String cnpj;
+    private String cpf;
 
-    @Override
-    public void processValueChange(ValueChangeEvent event) throws AbortProcessingException {
-        
+    public Mydemo(String cnpj, String cpf) {
+        this.cnpj = cnpj;
+        this.cpf = cpf;
     }
-    
+
+    public Mydemo() {
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 }
