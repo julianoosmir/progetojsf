@@ -1,276 +1,290 @@
-
 @font-face {
-  font-family: 'Bradesco Sans';
-  src: url('BradescoSans-Bold-web.ttf') format('truetype');
+    font-family: 'Bradesco Sans';
+    src: url('BradescoSans-Bold-web.ttf') format('truetype');
 }
 
 /* CSS reset */
-*, *:before, *:after { 
-  margin:0;
-  padding:0;
-  color: #8f8f8f;
-  font-family: Bradesco Sans,sans-serif;
+*, *:before, *:after {
+    margin: 0;
+    padding: 0;
+    color: #8f8f8f;
+    font-family: Bradesco Sans, sans-serif;
 }
 
- 
+
 /* remove a linha dos links */
-a{
-  text-decoration: none;
+a {
+    text-decoration: none;
 }
 
 /* esconde as ancoras da tela */
-a.links{
-  display: none;
+a.links {
+    display: none;
 }
 
-.content{
-  width: 500px;	
-  min-height: 560px;    
-  margin: 0px auto;
-  margin-top: 30px;
-  position: relative;   
+.content {
+    width: 500px;
+    min-height: 560px;
+    margin: 0px auto;
+    margin-top: 30px;
+    position: relative;
 }
 
-h1{
-  font-size: 16px;
-  color: #8f8f8f;
-  padding: 2px 0 10px 0;
-  font-family: Bradesco Sans,sans-serif;
-  font-weight: bold;
-  text-align: center;
-  padding-bottom: 10px;
-  margin-bottom: 0px;
+h1 {
+    font-size: 16px;
+    color: #8f8f8f;
+    padding: 2px 0 10px 0;
+    font-family: Bradesco Sans, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 10px;
+    margin-bottom: 0px;
 }
 
-h2{
-  font-size: 14px;
-  color: #8f8f8f;
-  padding: 2px 0 10px 0;
-  font-family: Bradesco Sans,sans-serif;
-  font-weight: bold;
-  text-align: center;
-  padding-bottom: 0px;
+h2 {
+    font-size: 14px;
+    color: #8f8f8f;
+    padding: 2px 0 10px 0;
+    font-family: Bradesco Sans, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 0px;
 }
 
-h3{
-  font-size: 14px;
-  color: #8f8f8f;
-  padding: 2px 0 10px 0;
-  font-family: Bradesco Sans,sans-serif;
-  font-weight: bold;
-  text-align: left;
-  padding-bottom: 14px;
+h3 {
+    font-size: 14px;
+    color: #8f8f8f;
+    padding: 2px 0 10px 0;
+    font-family: Bradesco Sans, sans-serif;
+    font-weight: bold;
+    text-align: left;
+    padding-bottom: 14px;
 }
 
-p{
-  margin-bottom:15px;
+p {
+    margin-bottom: 15px;
 }
 
-#bs_login_cpf_cnpj{
-	font-size: 14px;
-	color: #8f8f8f;
-	font-family: Bradesco Sans,sans-serif;
-	font-weight: bold;
+#bs_login_cpf_cnpj {
+    font-size: 14px;
+    color: #8f8f8f;
+    font-family: Bradesco Sans, sans-serif;
+    font-weight: bold;
 }
 
-#msg_erro{
-	font-size: 12px;
-	font-family: Bradesco Sans, sans-serif;
-	color: #e60b0b;
-}
-	
-.aviso{
-	font-size: 14px;
-  	color: #8f8f8f;
- 	padding: 2px 0 10px 0;
-  	font-family: Bradesco Sans,sans-serif;
-  	font-weight: bold;
-  	text-align: justify;
-  	padding-bottom: 0px;
-  	margin-bottom:15px;
-  	margin-top:5px;
+#msg_erro {
+    font-size: 12px;
+    font-family: Bradesco Sans, sans-serif;
+    color: #e60b0b;
 }
 
- 
-.content p:first-child{
-  margin: 0px;
+.aviso {
+    font-size: 14px;
+    color: #8f8f8f;
+    padding: 2px 0 10px 0;
+    font-family: Bradesco Sans, sans-serif;
+    font-weight: bold;
+    text-align: justify;
+    padding-bottom: 0px;
+    margin-bottom: 15px;
+    margin-top: 5px;
 }
- 
-label{
-  color: #e60b0b;
-  position: relative;
+.imgdeerro {
+    width: 170px;
+    margin-top: 30px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+#msg_erro_whitelist{
+    font-size: 15px;
+    font-family: Bradesco Sans, sans-serif;
+    color: #e60b0b;
+    margin: 0;
+    text-align: center;
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.content p:first-child {
+    margin: 0px;
+}
+
+label {
+    color: #e60b0b;
+    position: relative;
 }
 
 /* placeholder */
-::-webkit-input-placeholder  {
-  color: #bebcbc; 
-  font-style: italic;
+::-webkit-input-placeholder {
+    color: #bebcbc;
+    font-style: italic;
 }
- 
+
 input:-moz-placeholder,
-textarea:-moz-placeholder{
-  color: #bebcbc;
-  font-style: italic;
+textarea:-moz-placeholder {
+    color: #bebcbc;
+    font-style: italic;
 }
 
 input {
-  outline: none;
+    outline: none;
 }
- 
+
 /*estilo dos input,  menos o checkbox */
-input:not([type="checkbox"]){
-  width: 95%;
-  margin-top: 4px;
-  padding: 10px;    
-  border: 1px solid #b2b2b2;
- 
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
- 
-  -webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
-  box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
- 
-  -webkit-transition: all 0.2s linear;
-  transition: all 0.2s linear;
+input:not([type="checkbox"]) {
+    width: 95%;
+    margin-top: 4px;
+    padding: 10px;
+    border: 1px solid #b2b2b2;
+
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+    box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+
+    -webkit-transition: all 0.2s linear;
+    transition: all 0.2s linear;
 }
- 
+
 /*estilo do bot�o submit */
-input[type="submit"]{
-  width: 101%!important;
-  cursor: pointer;  
-  background: #0B67BD;
-  padding: 8px 5px;
-  color: #fff;
-  font-size: 16px;  
-  font-family: Bradesco Sans,sans-serif;
-  border: 1px solid #fff;   
-  margin-bottom: 10px;  
-  text-shadow: 0 1px 1px #333;
- 
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
- 
-  transition: all 0.2s linear;
+input[type="submit"] {
+    width: 101% !important;
+    cursor: pointer;
+    background: #0B67BD;
+    padding: 8px 5px;
+    color: #fff;
+    font-size: 16px;
+    font-family: Bradesco Sans, sans-serif;
+    border: 1px solid #fff;
+    margin-bottom: 10px;
+    text-shadow: 0 1px 1px #333;
+
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+
+    transition: all 0.2s linear;
 }
- 
+
 /*estilo do bot�o submit no hover */
-input[type="submit"]:hover{
-  background: #8f8f8f;
+input[type="submit"]:hover {
+    background: #8f8f8f;
 }
 
-.link{
-  position: absolute;
-  background: #e1eaeb;
-  color: #7f7c7c;
-  left: 0px;
-  height: 20px;
-  width: 440px;
-  padding: 17px 30px 20px 30px;
-  font-size: 14px;
-  text-align: right;
-  border-top: 1px solid #dbe5e8;
- 
-  -webkit-border-radius: 0 0  5px 5px;
-  border-radius: 0 0  5px 5px;
+.link {
+    position: absolute;
+    background: #e1eaeb;
+    color: #7f7c7c;
+    left: 0px;
+    height: 20px;
+    width: 440px;
+    padding: 17px 30px 20px 30px;
+    font-size: 14px;
+    text-align: right;
+    border-top: 1px solid #dbe5e8;
+
+    -webkit-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
 }
- 
+
 .link a {
-  font-weight: bold;
-  background: #f7f8f1;
-  padding: 6px;
-  color: rgb(29, 162, 193);
-  margin-left: 10px;
-  border: 1px solid #cbd518;
- 
-  -webkit-border-radius: 4px;
-  border-radius: 4px;  
- 
-  -webkit-transition: all 0.4s linear;
-  transition: all 0.4s  linear;
+    font-weight: bold;
+    background: #f7f8f1;
+    padding: 6px;
+    color: rgb(29, 162, 193);
+    margin-left: 10px;
+    border: 1px solid #cbd518;
+
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+
+    -webkit-transition: all 0.4s linear;
+    transition: all 0.4s linear;
 }
- 
+
 .link a:hover {
-  color: #39bfd7;
-  background: #f7f7f7;
-  border: 1px solid #4ab3c6;
+    color: #39bfd7;
+    background: #f7f7f7;
+    border: 1px solid #4ab3c6;
 }
 
+#login {
+    position: absolute;
+    top: 0px;
+    width: 73%;
+    padding: 18px 6% 0px 6%;
+    margin: 0 0 35px 20px;
+    background: #f7f7f7;
+    border: 1px solid rgba(147, 184, 189, 0.8);
 
-#login{
-  position: absolute;
-  top: 0px;
-  width: 73%;   
-  padding: 18px 6% 0px 6%;
-  margin: 0 0 35px 20px;
-  background: #f7f7f7;
-  border: 1px solid rgba(147, 184, 189,0.8);
-   
-  -webkit-box-shadow: 5px;
-  border-radius: 5px;
-   
-  -webkit-animation-duration: 0.5s;
-  -webkit-animation-timing-function: ease;
-  -webkit-animation-fill-mode: both;
- 
-  animation-duration: 0.5s;
-  animation-timing-function: ease;
-  animation-fill-mode: both;
+    -webkit-box-shadow: 5px;
+    border-radius: 5px;
+
+    -webkit-animation-duration: 0.5s;
+    -webkit-animation-timing-function: ease;
+    -webkit-animation-fill-mode: both;
+
+    animation-duration: 0.5s;
+    animation-timing-function: ease;
+    animation-fill-mode: both;
 }
 
 /* Efeito ao clicar no bot�o ( Ir para Login ) */
 
-#paralogin:target ~ .content #login{
-  z-index: 2;
-  -webkit-animation-name: fadeInLeft;
-  animation-name: fadeInLeft;
- 
-  -webkit-animation-delay: .1s;
-  animation-delay: .1s;
+#paralogin:target ~ .content #login {
+    z-index: 2;
+    -webkit-animation-name: fadeInLeft;
+    animation-name: fadeInLeft;
+
+    -webkit-animation-delay: .1s;
+    animation-delay: .1s;
 }
- 
+
 /*fadeInLeft*/
 @-webkit-keyframes fadeInLeft {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateX(-20px);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: translateX(0);
-  }
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+    }
 }
- 
+
 @keyframes fadeInLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
- 
+
 /*fadeOutLeft*/
 @-webkit-keyframes fadeOutLeft {
-  0% {
-    opacity: 1;
-    -webkit-transform: translateX(0);
-  }
-  100% {
-    opacity: 0;
-    -webkit-transform: translateX(-20px);
-  }
+    0% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: translateX(-20px);
+    }
 }
- 
+
 @keyframes fadeOutLeft {
-  0% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
 }
 
