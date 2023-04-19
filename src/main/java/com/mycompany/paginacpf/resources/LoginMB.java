@@ -26,14 +26,15 @@ public class LoginMB {
     private String cpfCnpj;
 
     private String cpf;
-
     private Boolean campoCpf;
+    private Boolean isloading;
     private Map<String, Boolean> erros;
     private Map<String, String> mensagens;
 
     @PostConstruct
     public void init() {
         this.campoCpf = false;
+        this.isloading = true;
         try {
 
             this.erros = new HashMap<String, Boolean>();
@@ -102,6 +103,10 @@ public class LoginMB {
     }
     private void doEfetuarLoginID() {
         FacesContext context = FacesContext.getCurrentInstance();
+        final String cpfnaoencontrado = "cpfnaoencontrado";
+        this.erros.put(cpfnaoencontrado, true);
+        this.mensagens.put(cpfnaoencontrado, "CPF não encontrado, por favor insira um CPF valido");
+
 
     }
 
@@ -211,5 +216,11 @@ public class LoginMB {
         this.mensagens = mensagens;
     }
 
+    public Boolean getIsloading() {
+        return isloading;
+    }
 
+    public void setIsloading(Boolean isloading) {
+        this.isloading = isloading;
+    }
 }

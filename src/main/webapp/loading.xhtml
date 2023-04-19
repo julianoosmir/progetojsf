@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" lang="pt-BR"
+>
+
+<h:head>
+    <title>BSPN-IntranetCorretor</title>
+    <link rel="stylesheet" type="text/css" href="./includes/css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="./includes/css/loading.css"/>
+
+</h:head>
+<h:body>
+    <div class="container">
+        <a class="links" id="paralogin"></a>
+        <div class="content">
+            <div id="login">
+                <h:form id="formLogin_Corretor">
+
+                    <h1><h:outputText id="h1" value="Acesso Corretor - Intranet"/></h1>
+                    <h:panelGroup rendered="#{loginMB.isloading}">
+                    <div class="conatineir-loading-plus-message">
+                        <div class="container-fed-gestao-loading-bs">
+                            <div>&nbsp;</div>
+                            <div>&nbsp;</div>
+                            <div>&nbsp;</div>
+                        </div>
+                        <span class="message">{{ message }}</span>
+                    </div>
+                    </h:panelGroup>
+
+                    <div class="aviso">
+                        <p>
+                            <b><h2>Aviso importante:</h2></b><br/> Esta aplicação está
+                            gerando um log para acompanhamento e monitoramento de todas ações
+                            executadas por este usuário. É de sua inteira responsabilidade
+                            qualquer movimentação indevida, estando sujeito a questionamentos
+                            e medidas que se façam necessárias.
+                        </p>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </div>
+
+
+</h:body>
+</html>

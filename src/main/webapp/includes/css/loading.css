@@ -1,0 +1,59 @@
+.conatineir-loading-plus-message {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container-fed-gestao-loading-bs {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 143px;
+    height: 143px;
+}
+
+.container-fed-gestao-loading-bs div {
+    position: absolute;
+    border-radius: 50%;
+    border: 2.5px solid red;
+    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.container-fed-gestao-loading-bs div:nth-child(2) {
+    animation-delay: -0.5s;
+}
+
+.container-fed-gestao-loading-bs div:nth-child(3) {
+    animation-delay: -1s;
+}
+
+@keyframes lds-ripple {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    4.9% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    5% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+    }
+}
+
+.message {
+    font: normal normal 300 14px/20px Bradesco Sans;
+}
