@@ -6,44 +6,40 @@
 >
 
 <h:head>
-   <title>BSPN-IntranetCorretor</title>
-   <link rel="stylesheet" type="text/css" href="./includes/css/styles.css"/>
+    <title>BSPN-IntranetCorretor</title>
+    <link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/includes/css/styles.css"/>
+    <link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/includes/css/tela_erro.css"/>
 </h:head>
 <h:body>
-   <div class="container">
-      <a class="links" id="paralogin"></a>
-      <div class="content">
-         <div id="login">
-            <h:form id="formLogin_Corretor">
-
-               <h1><h:outputText id="h1" value="Acesso Corretor - Intranet"/></h1>
-
-               <div class="imgdeerro">
-                  <img  src="includes/fonts/x_de_erro.png" alt=""/>
-               </div>
-
-               <div class="bs-form_control  #{loginMB.erros.errowhilist?'bs-has-error':null}">
+    <div class="container">
+        <div class="content">
+            <div id="tela_de_erro">
+                <h:form id="formLogin_Corretor">
+                    <h1><h:outputText id="h1" value="Acesso Corretor - Intranet"/></h1>
+                    <div>&nbsp;</div>
+                    <span class="icon-alerta-erro2"/>
+                    <div class="bs-form_control  #{loginMB.erros.errowhitelist?'bs-has-error':null}">
 
                   <span id="msg_erro_whitelist" class="bs_login_error_mensagens">
-						 	<h:outputLabel value="#{loginMB.mensagens.errowhilist}"/>
+						 	<h:outputLabel value="#{loginMB.mensagens.errowhitelist}"/>
                   </span>
+                        <div>&nbsp;</div>
+                        <h:commandButton id="botao" value="Voltar" action="#{loginMB.voltar}"/>
+                    </div>
 
-                  <h:commandButton id="botao" value="Voltar" action="#{loginMB.voltar}"/>
-               </div>
-
-               <div class="aviso">
-                  <p>
-                     <b><h2>Aviso importante:</h2></b><br/> Esta aplicação está
-                     gerando um log para acompanhamento e monitoramento de todas ações
-                     executadas por este usuário. É de sua inteira responsabilidade
-                     qualquer movimentação indevida, estando sujeito a questionamentos
-                     e medidas que se façam necessárias.
-                  </p>
-               </div>
-            </h:form>
-         </div>
-      </div>
-   </div>
+                    <div class="aviso">
+                        <p>
+                            <b><h2>Aviso importante:</h2></b><br/> Esta aplicação está
+                            gerando um log para acompanhamento e monitoramento de todas ações
+                            executadas por este usuário. É de sua inteira responsabilidade
+                            qualquer movimentação indevida, estando sujeito a questionamentos
+                            e medidas que se façam necessárias.
+                        </p>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </div>
 
 
 </h:body>

@@ -1,0 +1,31 @@
+#tela_de_erro {
+    position: absolute;
+    top: 0px;
+    width: 73%;
+    padding: 18px 6% 0px 6%;
+    margin: 0 0 35px 20px;
+    background: #f7f7f7;
+    border: 1px solid rgba(147, 184, 189, 0.8);
+    font-family: Bradesco Sans, sans-serif;
+    -webkit-box-shadow: 5px;
+    border-radius: 5px;
+
+    -webkit-animation-duration: 0.5s;
+    -webkit-animation-timing-function: ease;
+    -webkit-animation-fill-mode: both;
+
+    animation-duration: 0.5s;
+    animation-timing-function: ease;
+    animation-fill-mode: both;
+}
+
+/* Efeito ao clicar no bot�o ( Ir para Login ) */
+
+#tela_de_erro .icon-alerta-erro2:before{
+    color: red;
+    text-align: center;
+    font-size: 80px;
+    margin-left: 140px;
+    margin-right: 20px;
+    height: 37px;
+}

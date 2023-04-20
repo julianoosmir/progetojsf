@@ -32,6 +32,7 @@
                         <span id="msg_erro" class="bs_login_error_mensagens">
 						 	<h:outputLabel value="#{loginMB.mensagens.cpfcnpj}"/>
 						</span>
+                        <div>&nbsp;</div>
 
                         <h:panelGroup id="insputCpfClient" rendered="#{loginMB.campoCpf}">
                             <h:outputText id="bs_login_cpf" value="CPF*"/>
@@ -49,10 +50,9 @@
                               <span id="msg_erro_cpf_nao_encontrado" class="bs_login_error_mensagens">
 						 	    <h:outputLabel value="#{loginMB.mensagens.cpfnaoencontrado}"/>
                               </span>
-                            <br/>
                         </h:panelGroup>
                     </div>
-                    <br/>
+
                     <div class="aviso">
                         <p>
                             <b><h2>Aviso importante:</h2></b><br/> Esta aplicação está

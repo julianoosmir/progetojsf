@@ -1,0 +1,119 @@
+#atendimento {
+    width: 128px;
+    height: 20px;
+    text-align: center;
+    font: normal normal 600 16px/20px Bradesco Sans;
+    letter-spacing: 0px;
+    color: #0B67BD;
+    opacity: 1;
+}
+
+#botaoatendimento {
+    width: 351px;
+    height: 42px;
+    background: #CC092F 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    opacity: 1;
+    text-align: center;
+    font: normal normal 600 14px/17px Bradesco Sans;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+}
+
+#atendimento_tempo {
+    text-align: center;
+    font: normal normal 600 14px/17px Bradesco Sans;
+    letter-spacing: 0px;
+    color: #707070;
+    opacity: 1;
+    width: 150px;
+    height: 17px;
+}
+
+#cronometro {
+    width: 200px;
+    margin-top: 30px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#estender_atendimento {
+    text-align: center;
+    font: normal normal 600 14px/17px Bradesco Sans;
+    letter-spacing: 0px;
+    color: #0B67BD;
+    opacity: 1;
+    width: 100%;
+    height: 17px;
+}
+
+#botaoestender {
+    background: #0B67BD 0% 0% no-repeat padding-box;
+    opacity: 1;
+    width: 18px;
+    height: 18px;
+}
+
+#span_estender {
+    text-align: center;
+    font: normal normal 600 14px/17px Bradesco Sans;
+    letter-spacing: 0px;
+    color: #0B67BD;
+    opacity: 1;
+}
+
+
+#msg_estender {
+    font: normal normal 600 14px/17px Bradesco Sans;
+    letter-spacing: 0px;
+    color: #0B67BD;
+    opacity: 1;
+    width: 100%;
+    height: 17px;
+
+}
+#msg_estender label{
+    white-space: nowrap;
+    max-width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    float:left;
+    margin-left: 10px
+}
+#msg_estender .icon-nav-adicionar:before {
+    color: #0B67BD;
+}
+.container{
+    height: 300px;
+}
+.time_circles {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.time_circles > div {
+    position: absolute;
+    text-align: center;
+}
+.time_circles > div > h4 {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Century Gothic', Arial;
+    line-height: 1;
+    padding: 50px;
+}
+.time_circles > div > span {
+    margin: 0;
+    padding: 20px 0 0 0;
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-family: 'Century Gothic', Arial;
+    line-height: 1;
+    font-weight: bold;
+}

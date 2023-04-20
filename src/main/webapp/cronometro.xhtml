@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" lang="pt-BR"
+>
+
+<h:head>
+   <title>BSPN-IntranetCorretor</title>
+   <link rel="stylesheet" type="text/css" href="./includes/css/styles.css"/>
+   <link rel="stylesheet" type="text/css" href="./includes/css/loading.css"/>
+   <link rel="stylesheet" type="text/css" href="./includes/css/cronometro.css"/>
+   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/timecircles/1.5.3/TimeCircles.js"></script>
+</h:head>
+<h:body>
+   <div class="container">
+      <a class="links" id="paralogin"></a>
+      <div class="content">
+         <div id="login">
+            <h1><h:outputText id="atendimento" value="Em Atendimento"/></h1>
+            <div id="cronometro">
+               <h1><h:outputText id="atendimento_tempo" value="Atendimento acaba às :"/></h1>
+               <div>&nbsp;</div>
+               <div class="container">
+                  <div id="DateCountdown" data-date="2019-10-03 00:00:00" ></div>
+               </div>
+               <div id="msg_estender">
+                  <h:outputLabel id="estender_atendimento" value="Estender atendimento"/>
+                  <span id="span_estender" class="icon-nav-adicionar"/>
+               </div>
+            </div>
+            <div>&nbsp;</div>
+
+            <h:commandButton id="botaoatendimento" value="Finalizar Atendimento" action="#{loginMB.voltar}"/>
+         </div>
+      </div>
+   </div>
+<script type="text/javascript">
+   $("#DateCountdown").TimeCircles({
+      circle_bg_color: "#d2d4da",
+      animation: "smooth",
+      direction: "both",
+      time: {
+         Days: { color: "#C0C8CF",text: "Dias", show: false },
+         Hours: { color: "#dd000d", text: "Horas", show: false},
+         Minutes: { color: "#dd000d", text: "Minutos", show: true},
+         Seconds: { color: "#dd000d", text: "Segundos", show: true}
+      }
+   });
+   var updateTime = function(){
+      var date = $("#date").val();
+      var time = $("#time").val();
+      console.log(date,time)
+      var datetime = date + ' ' + time + ':00';
+      $("#DateCountdown").data('date', datetime).TimeCircles().start();
+   }
+   updateTime();
+</script>
+
+</h:body>
+</html>

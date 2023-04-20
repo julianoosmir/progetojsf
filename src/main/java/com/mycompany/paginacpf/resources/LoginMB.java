@@ -78,7 +78,7 @@ public class LoginMB {
             dadosValidos = false;
             this.setEsperanca("Campo CPF/CNPJ é obrigatório.");
         }
-        this.setEsperanca(this.cpfCnpj);
+
         if (!validarFormatocnpj(this.cpfCnpj)) {
             this.erros.put(cpfcnpjName, true);
             this.mensagens.put(cpfcnpjName, "Formato CPF/CNPJ inválido.");
@@ -116,10 +116,10 @@ public class LoginMB {
     }
     private void telaDeErro(){
         FacesContext context = FacesContext.getCurrentInstance();
-        final String errowhilist = "errowhilist";
+        final String errowhitelist = "errowhitelist";
         try {
-            this.erros.put(errowhilist, true);
-            this.mensagens.put(errowhilist, "Desculpe, o serviço de identificação de CNPJ" +
+            this.erros.put(errowhitelist, true);
+            this.mensagens.put(errowhitelist, "Desculpe, o serviço de identificação de CNPJ" +
                     " está temporariamente indisponivel no momento." +
                     " Por favor, tente novamente mais tarde");
 
