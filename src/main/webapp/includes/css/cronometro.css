@@ -88,32 +88,123 @@
 .container{
     height: 300px;
 }
-.time_circles {
-    position: relative;
-    width: 100%;
-    height: 100%;
+@import url(https://fonts.googleapis.com/css?family=Lato:700);
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
 }
 
-.time_circles > div {
-    position: absolute;
-    text-align: center;
+html,
+body {
+    background: #ecf0f1;
+    padding: 10px;
+    color: #444;
+    font-family: "Lato", Tahoma, Geneva, sans-serif;
+    font-size: 16px;
 }
-.time_circles > div > h4 {
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    text-transform: uppercase;
-    font-family: 'Century Gothic', Arial;
-    line-height: 1;
-    padding: 50px;
-}
-.time_circles > div > span {
-    margin: 0;
-    padding: 20px 0 0 0;
+
+#percent {
     display: block;
-    width: 100%;
+    width: 160px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 50px auto 20px;
+    padding: 10px;
+    color: #1abc9c;
+    font-family: "Lato", Tahoma, Geneva, sans-serif;
+    font-size: 35px;
     text-align: center;
-    font-family: 'Century Gothic', Arial;
-    line-height: 1;
-    font-weight: bold;
+}
+
+#donut {
+    display: block;
+    margin: 0px auto;
+    color: #1abc9c;
+    font-size: 20px;
+    text-align: center;
+}
+
+p {
+    max-width: 600px;
+    margin: 12px auto;
+    font-weight: normal;
+    font-family: sans-serif;
+}
+
+code {
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 0px 4px;
+}
+
+.donut-size {
+    font-size: 12em;
+}
+
+.pie-wrapper {
+    position: relative;
+    width: 1em;
+    height: 1em;
+    margin: 0px auto;
+}
+
+.pie-wrapper .pie {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    clip: rect(0, 1em, 1em, 0.5em);
+}
+
+.pie-wrapper .half-circle {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border: 0.1em solid     #0E81ED;;
+    border-radius: 50%;
+    clip: rect(0em, 0.5em, 1em, 0em);
+}
+
+.pie-wrapper .right-side {
+    transform: rotate(0deg);
+}
+
+.pie-wrapper .label {
+    position: absolute;
+    top: 0.52em;
+    right: 0.4em;
+    bottom: 0.4em;
+    left: 0.4em;
+    display: block;
+    background: none;
+    border-radius: 50%;
+    color: #7f8c8d;
+    font-size: 0.25em;
+    line-height: 2.6em;
+    text-align: center;
+    cursor: default;
+    z-index: 2;
+}
+.num {
+    color: #0b67bd;
+}
+
+.pie-wrapper .smaller {
+    padding-bottom: 20px;
+    color: #bdc3c7;
+    font-size: 0.45em;
+    vertical-align: super;
+}
+
+.pie-wrapper .shadow {
+    width: 100%;
+    height: 100%;
+    border: 0.1em solid #bdc3c7;
+    border-radius: 50%;
 }

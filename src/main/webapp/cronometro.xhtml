@@ -6,57 +6,98 @@
 >
 
 <h:head>
-   <title>BSPN-IntranetCorretor</title>
-   <link rel="stylesheet" type="text/css" href="./includes/css/styles.css"/>
-   <link rel="stylesheet" type="text/css" href="./includes/css/loading.css"/>
-   <link rel="stylesheet" type="text/css" href="./includes/css/cronometro.css"/>
-   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/timecircles/1.5.3/TimeCircles.js"></script>
+    <title>BSPN-IntranetCorretor</title>
+    <link rel="stylesheet" type="text/css" href="./includes/css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="./includes/css/loading.css"/>
+    <link rel="stylesheet" type="text/css" href="./includes/css/cronometro.css"/>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </h:head>
 <h:body>
-   <div class="container">
-      <a class="links" id="paralogin"></a>
-      <div class="content">
-         <div id="login">
-            <h1><h:outputText id="atendimento" value="Em Atendimento"/></h1>
-            <div id="cronometro">
-               <h1><h:outputText id="atendimento_tempo" value="Atendimento acaba às :"/></h1>
-               <div>&nbsp;</div>
-               <div class="container">
-                  <div id="DateCountdown" data-date="2019-10-03 00:00:00" ></div>
-               </div>
-               <div id="msg_estender">
-                  <h:outputLabel id="estender_atendimento" value="Estender atendimento"/>
-                  <span id="span_estender" class="icon-nav-adicionar"/>
-               </div>
-            </div>
-            <div>&nbsp;</div>
+    <div class="container">
+        <a class="links" id="paralogin"></a>
+        <div class="content">
+            <div id="login">
+                <h1><h:outputText id="atendimento" value="Em Atendimento"/></h1>
+                <div id="cronometro">
+                    <h1><h:outputText id="atendimento_tempo" value="Atendimento acaba às :"/></h1>
+                    <div>&nbsp;</div>
+                    <div class="container">
+                        <div id="specificChart" class="donut-size">
+                            <div class="pie-wrapper">
+                                    <span class="label">
+                                      <span class="num">0</span>
+                                     </span>
+                                <div class="pie">
+                                    <div class="left-side half-circle"></div>
+                                    <div class="right-side half-circle"></div>
+                                </div>
+                                <div class="shadow"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="msg_estender">
+                        <h:outputLabel id="estender_atendimento" value="Estender atendimento"/>
+                        <span id="span_estender" class="icon-nav-adicionar"/>
+                    </div>
+                </div>
+                <div>&nbsp;</div>
 
-            <h:commandButton id="botaoatendimento" value="Finalizar Atendimento" action="#{loginMB.voltar}"/>
-         </div>
-      </div>
-   </div>
-<script type="text/javascript">
-   $("#DateCountdown").TimeCircles({
-      circle_bg_color: "#d2d4da",
-      animation: "smooth",
-      direction: "both",
-      time: {
-         Days: { color: "#C0C8CF",text: "Dias", show: false },
-         Hours: { color: "#dd000d", text: "Horas", show: false},
-         Minutes: { color: "#dd000d", text: "Minutos", show: true},
-         Seconds: { color: "#dd000d", text: "Segundos", show: true}
-      }
-   });
-   var updateTime = function(){
-      var date = $("#date").val();
-      var time = $("#time").val();
-      console.log(date,time)
-      var datetime = date + ' ' + time + ':00';
-      $("#DateCountdown").data('date', datetime).TimeCircles().start();
-   }
-   updateTime();
-</script>
+                <h:commandButton id="botaoatendimento" value="Finalizar Atendimento" action="#{loginMB.voltar}"/>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function startTimer(duration, display) {
+            var timer = duration, minutes, seconds;
+            setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                minutes = minutes &lt; 10 ? "0" + minutes : minutes;
+                seconds = seconds &lt; 10 ? "0" + seconds : seconds;
+                var tela = minutes + ":" + seconds;
+                //display.textContent = tela;
+
+                updateDonutChart("#specificChart", duration, timer, true, tela);
+                console.log(duration);
+                if (--timer &lt; 0) {
+                    timer = duration;
+                }
+            }, 1000);
+        }
+
+        function updateDonutChart(el, bruto, num, donut, tela) {
+            var percent = (num * 100) / bruto;
+
+            var deg = Math.round(360 * (percent / 100));
+
+            if (percent > 50) {
+                $(el + " .pie").css("clip", "rect(auto, auto, auto, auto)");
+                $(el + " .right-side").css("transform", "rotate(180deg)");
+            } else {
+                $(el + " .pie").css("clip", "rect(0, 1em, 1em, 0.5em)");
+                $(el + " .right-side").css("transform", "rotate(0deg)");
+            }
+            if (donut) {
+                $(el + " .right-side").css("border-width", "0.1em");
+                $(el + " .left-side").css("border-width", "0.1em");
+                $(el + " .shadow").css("border-width", "0.1em");
+            } else {
+                $(el + " .right-side").css("border-width", "0.5em");
+                $(el + " .left-side").css("border-width", "0.5em");
+                $(el + " .shadow").css("border-width", "0.5em");
+            }
+
+            $(el + " .num").text(tela);
+            $(el + " .left-side").css("transform", "rotate(" + deg + "deg)");
+        }
+
+        window.onload = function () {
+            var duration = 60 * 5; // Converter para segundos
+            display = document.querySelector('#datas'); // selecionando o timer
+            startTimer(duration, display); // iniciando o timer
+        };
+
+    </script>
 
 </h:body>
 </html>
