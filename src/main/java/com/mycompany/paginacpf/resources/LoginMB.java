@@ -30,11 +30,13 @@ public class LoginMB {
     private Boolean isloading;
     private Map<String, Boolean> erros;
     private Map<String, String> mensagens;
+    private Integer segundos;
 
     @PostConstruct
     public void init() {
         this.campoCpf = false;
         this.isloading = true;
+        this.segundos = 360;
         try {
 
             this.erros = new HashMap<String, Boolean>();
@@ -54,6 +56,10 @@ public class LoginMB {
         }
     }
 
+    public Integer adicionar(){
+        this.segundos = segundos + 60;
+        return this.segundos;
+    }
     public String verificarCampo() {
         if (this.validarDadosCnpj()) {
             boolean whitelist = temWhitlelist();
@@ -67,7 +73,6 @@ public class LoginMB {
         }
         return "sucesso";
     }
-
 
     public boolean validarDadosCnpj(){
         boolean dadosValidos = true;
@@ -106,8 +111,6 @@ public class LoginMB {
         final String cpfnaoencontrado = "cpfnaoencontrado";
         this.erros.put(cpfnaoencontrado, true);
         this.mensagens.put(cpfnaoencontrado, "CPF não encontrado, por favor insira um CPF valido");
-
-
     }
 
     private void doEfetuarLoginAsIs() {
@@ -222,5 +225,13 @@ public class LoginMB {
 
     public void setIsloading(Boolean isloading) {
         this.isloading = isloading;
+    }
+
+    public Integer getSegundos() {
+        return segundos;
+    }
+
+    public void setSegundos(Integer segundos) {
+        this.segundos = segundos;
     }
 }

@@ -3,6 +3,7 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html" lang="pt-BR"
+      xmlns:f="http://java.sun.com/jsf/core"
 >
 
 <h:head>
@@ -31,23 +32,30 @@
                                     <div class="left-side half-circle"></div>
                                     <div class="right-side half-circle"></div>
                                 </div>
-                                <div class="shadow"></div>
+                                <div class="shadow"/>
                             </div>
                         </div>
                     </div>
-                    <div id="msg_estender">
-                        <h:outputLabel id="estender_atendimento" value="Estender atendimento"/>
-                        <span id="span_estender" class="icon-nav-adicionar"/>
-                    </div>
+                    <h:form id="estender">
+                        <div class="msg_estender">
+                            <h:outputLabel class="estender_atendimento" value="Estender atendimento"/>
+                            <h:commandLink id="adiconar" styleClass="icon-nav-adicionar" style="color: #0B67BD" action="#{loginMB.adicionar()}"/>
+                        </div>
+                    </h:form>
                 </div>
                 <div>&nbsp;</div>
+                <h:outputText id="segundos" value="#{loginMB.segundos}"/>
 
                 <h:commandButton id="botaoatendimento" value="Finalizar Atendimento" action="#{loginMB.voltar}"/>
+
             </div>
         </div>
     </div>
     <script type="text/javascript">
-        function startTimer(duration, display) {
+
+        var duration = $("#segundos").html();
+
+        function startTimer(duration) {
             var timer = duration, minutes, seconds;
             setInterval(function () {
                 minutes = parseInt(timer / 60, 10);
@@ -55,10 +63,8 @@
                 minutes = minutes &lt; 10 ? "0" + minutes : minutes;
                 seconds = seconds &lt; 10 ? "0" + seconds : seconds;
                 var tela = minutes + ":" + seconds;
-                //display.textContent = tela;
 
                 updateDonutChart("#specificChart", duration, timer, true, tela);
-                console.log(duration);
                 if (--timer &lt; 0) {
                     timer = duration;
                 }
@@ -92,9 +98,8 @@
         }
 
         window.onload = function () {
-            var duration = 60 * 5; // Converter para segundos
-            display = document.querySelector('#datas'); // selecionando o timer
-            startTimer(duration, display); // iniciando o timer
+            startTimer(duration); // iniciando o timer
+            //   $('#estender\\:adiconar').css("color", "#0B67BD");
         };
 
     </script>
