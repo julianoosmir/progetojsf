@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html" lang="pt-BR"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" lang="pt-BR"
 >
 
 <h:head>
@@ -27,7 +27,9 @@
 
                         <h:outputText id="bs_login_cpf_cnpj" value="CPF/CNPJ*"/>
                         <h:inputText id="cpfOuCnpj" label="Login" value="#{loginMB.cpfCnpj}" required="true"
-                                     onclick="mask_cpfouCnpj();"/>
+                                     onclick="mask_cpfouCnpj();">
+
+                        </h:inputText>
 
                         <span id="msg_erro" class="bs_login_error_mensagens">
 						 	<h:outputLabel value="#{loginMB.mensagens.cpfcnpj}"/>
@@ -43,7 +45,9 @@
 						    </span>
                         </h:panelGroup>
                         <br/>
-                        <h:commandButton id="botao" value="Acessar" action="#{loginMB.verificarCampo}"/>
+                        <h:panelGroup>
+                            <h:commandButton value="Acessar" action="#{loginMB.verificarCampo}"/>
+                        </h:panelGroup>
 
                         <h:panelGroup rendered="#{loginMB.erros.cpfnaoencontrado}">
                             <br/>

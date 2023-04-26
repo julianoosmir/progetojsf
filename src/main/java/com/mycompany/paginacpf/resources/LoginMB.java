@@ -56,11 +56,14 @@ public class LoginMB {
         }
     }
 
-    public Integer adicionar(){
+    public Integer adicionar() {
         this.segundos = segundos + 60;
         return this.segundos;
     }
+
     public String verificarCampo() {
+        this.esperanca = this.cpfCnpj.replaceAll("\\.|-|/", "");
+        ;
         if (this.validarDadosCnpj()) {
             boolean whitelist = temWhitlelist();
             this.campoCpf = whitelist;
@@ -74,7 +77,15 @@ public class LoginMB {
         return "sucesso";
     }
 
-    public boolean validarDadosCnpj(){
+    public void consultaWhiteList() {
+        WhiteListService whiteList = new WhiteListService();
+
+        if (whiteList.runRequest(this.setDataForm()).getBody() instanceof Boolean) {
+            this.setEsperanca("passou aqui no consultar");
+        }
+    }
+
+    public boolean validarDadosCnpj() {
         boolean dadosValidos = true;
         final String cpfcnpjName = "cpfcnpj";
         if (StringUtils.isEmpty(this.cpfCnpj)) {
@@ -88,7 +99,7 @@ public class LoginMB {
             this.erros.put(cpfcnpjName, true);
             this.mensagens.put(cpfcnpjName, "Formato CPF/CNPJ inválido.");
             dadosValidos = false;
-        }else {
+        } else {
             this.erros.clear();
             this.mensagens.clear();
             dadosValidos = true;
@@ -96,7 +107,7 @@ public class LoginMB {
         return dadosValidos;
     }
 
-    public boolean validarDadosCpf(){
+    public boolean validarDadosCpf() {
         boolean dadosValidos = true;
         final String cpfName = "cpf";
         if (!this.validarFormatocpf(this.cpf)) {
@@ -106,18 +117,24 @@ public class LoginMB {
         }
         return dadosValidos;
     }
+
     private void doEfetuarLoginID() {
         FacesContext context = FacesContext.getCurrentInstance();
-        final String cpfnaoencontrado = "cpfnaoencontrado";
-        this.erros.put(cpfnaoencontrado, true);
-        this.mensagens.put(cpfnaoencontrado, "CPF não encontrado, por favor insira um CPF valido");
+        try {
+            limparTela();
+            context.getExternalContext().redirect("https://login.dsv.bradescoseguros.com.br/nidp/idff/sso?id=secure_name_pasword_form_pneg&sid=0&option=credential&sid=0&target=https%3A%2F%2Fwwwn.dsv.bradescoseguros.com.br%2Fpnegocios%2Fwps%2Fmyportal%2Fportalnegocios%2Farealogada%2F");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     private void doEfetuarLoginAsIs() {
 
         this.telaDeErro();
     }
-    private void telaDeErro(){
+
+    private void telaDeErro() {
         FacesContext context = FacesContext.getCurrentInstance();
         final String errowhitelist = "errowhitelist";
         try {
@@ -131,6 +148,7 @@ public class LoginMB {
             throw new RuntimeException(e);
         }
     }
+
     private boolean temWhitlelist() {
         WhiteListService whiteListService = new WhiteListService();
         return whiteListService.
@@ -139,14 +157,26 @@ public class LoginMB {
                 : false;
     }
 
-    public String voltar(){
-        FacesContext context = FacesContext.getCurrentInstance();
-        try {
-            context.getExternalContext().redirect("index.xhtml");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public String voltar() {
+//        FacesContext context = FacesContext.getCurrentInstance();
+//        try {
+//            context.getExternalContext().redirect("index.xhtml");
+//            RequestContext
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+        this.campoCpf = true;
+        this.setEsperanca("finalizar");
         return this.esperanca;
+    }
+
+    public void limparTela() {
+
+        this.setCpf(StringUtils.EMPTY);
+        this.setCpfCnpj(StringUtils.EMPTY);
+        this.campoCpf = false;
+        this.erros.clear();
+        this.mensagens.clear();
     }
 
     private DataForm setDataForm() {
@@ -179,42 +209,55 @@ public class LoginMB {
     public String getCpfCnpj() {
         return cpfCnpj;
     }
+
     public void setCpfCnpj(String cpfCnpj) {
         this.cpfCnpj = cpfCnpj;
     }
+
     public String getEsperanca() {
         return esperanca;
     }
+
     public void setEsperanca(String esperanca) {
         this.esperanca = esperanca;
     }
+
     public String getCpf() {
         return cpf;
     }
+
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
     public boolean isCampoCpf() {
         return campoCpf;
     }
+
     public void setCampoCpf(boolean campoCpf) {
         this.campoCpf = campoCpf;
     }
+
     public Boolean getCampoCpf() {
         return campoCpf;
     }
+
     public void setCampoCpf(Boolean campoCpf) {
         this.campoCpf = campoCpf;
     }
+
     public Map<String, Boolean> getErros() {
         return erros;
     }
+
     public void setErros(Map<String, Boolean> erros) {
         this.erros = erros;
     }
+
     public Map<String, String> getMensagens() {
         return mensagens;
     }
+
     public void setMensagens(Map<String, String> mensagens) {
         this.mensagens = mensagens;
     }

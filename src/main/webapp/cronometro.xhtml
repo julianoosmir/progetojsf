@@ -8,8 +8,6 @@
 
 <h:head>
     <title>BSPN-IntranetCorretor</title>
-    <link rel="stylesheet" type="text/css" href="./includes/css/styles.css"/>
-    <link rel="stylesheet" type="text/css" href="./includes/css/loading.css"/>
     <link rel="stylesheet" type="text/css" href="./includes/css/cronometro.css"/>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </h:head>
@@ -21,6 +19,8 @@
                 <h1><h:outputText id="atendimento" value="Em Atendimento"/></h1>
                 <div id="cronometro">
                     <h1><h:outputText id="atendimento_tempo" value="Atendimento acaba às :"/></h1>
+                    <h3><h:outputText id="h3" value="#{loginMB.esperanca}"/></h3>
+
                     <div>&nbsp;</div>
                     <div class="container">
                         <div id="specificChart" class="donut-size">
@@ -39,15 +39,16 @@
                     <h:form id="estender">
                         <div class="msg_estender">
                             <h:outputLabel class="estender_atendimento" value="Estender atendimento"/>
-                            <h:commandLink id="adiconar" styleClass="icon-nav-adicionar" style="color: #0B67BD" action="#{loginMB.adicionar()}"/>
+                            <h:commandLink id="adiconar" styleClass="icon-nav-adicionar" style="color: #0B67BD"
+                                           action="#{loginMB.adicionar()}"/>
                         </div>
                     </h:form>
                 </div>
                 <div>&nbsp;</div>
                 <h:outputText id="segundos" value="#{loginMB.segundos}"/>
-
-                <h:commandButton id="botaoatendimento" value="Finalizar Atendimento" action="#{loginMB.voltar}"/>
-
+                <h:form>
+                    <h:commandButton class="botaoatendimento" value="Finalizar Atendimento" action="#{loginMB.voltar}"/>
+                </h:form>
             </div>
         </div>
     </div>
