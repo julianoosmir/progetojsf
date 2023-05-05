@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.servlet.http.HttpSession;
 
 @Named
 @ManagedBean
@@ -31,6 +32,7 @@ public class LoginMB {
     private Map<String, String> mensagens;
     private boolean redirecionar;
     private String url;
+
     @PostConstruct
     public void init() {
         this.campoCpf = false;
@@ -54,7 +56,6 @@ public class LoginMB {
         }
     }
 
-
     public String verificarCampo() {
         this.esperanca = this.cpfCnpj.replaceAll("\\.|-|/", "");
         ;
@@ -70,7 +71,6 @@ public class LoginMB {
         }
         return "sucesso";
     }
-
 
     public boolean validarDadosCnpj() {
         boolean dadosValidos = true;
@@ -117,14 +117,16 @@ public class LoginMB {
 
     private void telaDeErro() {
         FacesContext context = FacesContext.getCurrentInstance();
-        final String errowhitelist = "errowhitelist";
+           ErroMB erroMB = new ErroMB();
+            
         try {
-            this.erros.put(errowhitelist, true);
-            this.mensagens.put(errowhitelist, "Desculpe, o serviço de identificação de CNPJ" +
-                    " está temporariamente indisponivel no momento." +
-                    " Por favor, tente novamente mais tarde");
-
-            context.getExternalContext().redirect("erro_verificacao_whitelist.xhtml");
+            erroMB.setErroMenssagem("Desculpe, o serviço de identificação de CNPJ"
+                    + " está temporariamente indisponível no momento."
+                    + " Por favor, tente novamente mais tarde");
+            
+            erroMB.setUrl("index.xhtml");
+            erroMB.setBtnMenssage("voltar");
+            context.getExternalContext().redirect("tela_erro.xhtml");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -133,11 +135,10 @@ public class LoginMB {
     private boolean temWhitlelist() {
         WhiteListService whiteListService = new WhiteListService();
         return whiteListService.
-                runRequest(this.setDataForm()).getBody() instanceof Boolean ?
-                (Boolean) whiteListService.runRequest(this.setDataForm()).getBody()
+                runRequest(this.setDataForm()).getBody() instanceof Boolean
+                ? (Boolean) whiteListService.runRequest(this.setDataForm()).getBody()
                 : false;
     }
-
 
     public void limparTela() {
 

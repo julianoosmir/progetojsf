@@ -18,13 +18,13 @@
                     <h1><h:outputText id="h1" value="Acesso Corretor - Intranet"/></h1>
                     <div>&nbsp;</div>
                     <span class="icon-alerta-erro2"/>
-                    <div class="bs-form_control  #{loginMB.erros.errowhitelist?'bs-has-error':null}">
+                    <div class="bs-form_control  bs-has-error}">
 
                   <span id="msg_erro_whitelist" class="bs_login_error_mensagens">
-						 	<h:outputLabel value="#{loginMB.mensagens.errowhitelist}"/>
+                      <h:outputLabel value="#{erroMB.erroMenssagem}"/>
                   </span>
                         <div>&nbsp;</div>
-                        <h:commandButton id="botao" value="Voltar" action="#{loginMB.voltar}"/>
+                        <h:commandButton id="botao" value="#{erroMB.btnMenssage}" action="#{erroMB.redirecinar}"/>
                     </div>
 
                     <div class="aviso">
