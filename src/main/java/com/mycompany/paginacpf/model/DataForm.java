@@ -1,10 +1,12 @@
 package com.mycompany.paginacpf.model;
+
 public class DataForm {
 
     private Boolean loggedIdentidadeDigital;
     private String codigoProdutor;
     private String cpfUsuario;
     private String cpfCnpjPessoaVinculo;
+    private PersonalDataForm personalData;
 
     public DataForm() {
     }
@@ -39,6 +41,14 @@ public class DataForm {
 
     public void setLoggedIdentidadeDigital(Boolean loggedIdentidadeDigital) {
         this.loggedIdentidadeDigital = loggedIdentidadeDigital;
+    }
+
+    public PersonalDataForm getPersonalData() {
+        return personalData;
+    }
+
+    public void setPersonalData(PersonalDataForm personalData) {
+        this.personalData = personalData;
     }
 
     @Override

@@ -19,8 +19,6 @@
                 <h1><h:outputText id="atendimento" value="Em Atendimento"/></h1>
                 <div id="cronometro">
                     <h1><h:outputText id="atendimento_tempo" value="Atendimento acaba às :"/></h1>
-                    <h3><h:outputText id="h3" value="#{loginMB.esperanca}"/></h3>
-
                     <div>&nbsp;</div>
                     <div class="container">
                         <div id="specificChart" class="donut-size">
@@ -40,14 +38,15 @@
                         <div class="msg_estender">
                             <h:outputLabel class="estender_atendimento" value="Estender atendimento"/>
                             <h:commandLink id="adiconar" styleClass="icon-nav-adicionar" style="color: #0B67BD"
-                                           action="#{loginMB.adicionar()}"/>
+                                           action="#{cronometroMB.adicionar()}"/>
                         </div>
                     </h:form>
                 </div>
                 <div>&nbsp;</div>
-                <h:outputText id="segundos" value="#{loginMB.segundos}"/>
-                <h:form>
-                    <h:commandButton class="botaoatendimento" value="Finalizar Atendimento" action="#{loginMB.voltar}"/>
+                <h:outputText id="segundos" value="#{cronometroMB.segundos}"/>
+                <h:form id="final">
+                    <h:commandButton id="btnfinal" class="botaoatendimento" value="Finalizar Atendimento"
+                                     action="#{cronometroMB.voltar}" />
                 </h:form>
             </div>
         </div>
@@ -69,6 +68,9 @@
                 if (--timer &lt; 0) {
                     timer = duration;
                 }
+                if (timer === 0) {
+                    $('#final\\:btnfinal').click();
+                }
             }, 1000);
         }
 
@@ -85,9 +87,9 @@
                 $(el + " .right-side").css("transform", "rotate(0deg)");
             }
             if (donut) {
-                $(el + " .right-side").css("border-width", "0.1em");
-                $(el + " .left-side").css("border-width", "0.1em");
-                $(el + " .shadow").css("border-width", "0.1em");
+                $(el + " .right-side").css("border-width", "10px");
+                $(el + " .left-side").css("border-width", "10px");
+                $(el + " .shadow").css("border-width", "10px");
             } else {
                 $(el + " .right-side").css("border-width", "0.5em");
                 $(el + " .left-side").css("border-width", "0.5em");
@@ -102,6 +104,7 @@
             startTimer(duration); // iniciando o timer
             //   $('#estender\\:adiconar').css("color", "#0B67BD");
         };
+
 
     </script>
 

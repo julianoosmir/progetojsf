@@ -27,16 +27,14 @@ public class LoginMB {
 
     private String cpf;
     private Boolean campoCpf;
-    private Boolean isloading;
     private Map<String, Boolean> erros;
     private Map<String, String> mensagens;
-    private Integer segundos;
-
+    private boolean redirecionar;
+    private String url;
     @PostConstruct
     public void init() {
         this.campoCpf = false;
-        this.isloading = true;
-        this.segundos = 360;
+        this.redirecionar = false;
         try {
 
             this.erros = new HashMap<String, Boolean>();
@@ -56,10 +54,6 @@ public class LoginMB {
         }
     }
 
-    public Integer adicionar() {
-        this.segundos = segundos + 60;
-        return this.segundos;
-    }
 
     public String verificarCampo() {
         this.esperanca = this.cpfCnpj.replaceAll("\\.|-|/", "");
@@ -77,13 +71,6 @@ public class LoginMB {
         return "sucesso";
     }
 
-    public void consultaWhiteList() {
-        WhiteListService whiteList = new WhiteListService();
-
-        if (whiteList.runRequest(this.setDataForm()).getBody() instanceof Boolean) {
-            this.setEsperanca("passou aqui no consultar");
-        }
-    }
 
     public boolean validarDadosCnpj() {
         boolean dadosValidos = true;
@@ -119,14 +106,8 @@ public class LoginMB {
     }
 
     private void doEfetuarLoginID() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        try {
-            limparTela();
-            context.getExternalContext().redirect("https://login.dsv.bradescoseguros.com.br/nidp/idff/sso?id=secure_name_pasword_form_pneg&sid=0&option=credential&sid=0&target=https%3A%2F%2Fwwwn.dsv.bradescoseguros.com.br%2Fpnegocios%2Fwps%2Fmyportal%2Fportalnegocios%2Farealogada%2F");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
+        this.setUrl("https://login.dsv.bradescoseguros.com.br/nidp/idff/sso?id=secure_name_pasword_form_pneg&sid=0&option=credential&sid=0&target=https%3A%2F%2Fwwwn.dsv.bradescoseguros.com.br%2Fpnegocios%2Fwps%2Fmyportal%2Fportalnegocios%2Farealogada%2F");
+        this.redirecionar = this.campoCpf;
     }
 
     private void doEfetuarLoginAsIs() {
@@ -157,18 +138,6 @@ public class LoginMB {
                 : false;
     }
 
-    public String voltar() {
-//        FacesContext context = FacesContext.getCurrentInstance();
-//        try {
-//            context.getExternalContext().redirect("index.xhtml");
-//            RequestContext
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-        this.campoCpf = true;
-        this.setEsperanca("finalizar");
-        return this.esperanca;
-    }
 
     public void limparTela() {
 
@@ -262,19 +231,19 @@ public class LoginMB {
         this.mensagens = mensagens;
     }
 
-    public Boolean getIsloading() {
-        return isloading;
+    public boolean isRedirecionar() {
+        return redirecionar;
     }
 
-    public void setIsloading(Boolean isloading) {
-        this.isloading = isloading;
+    public void setRedirecionar(boolean redirecionar) {
+        this.redirecionar = redirecionar;
     }
 
-    public Integer getSegundos() {
-        return segundos;
+    public String getUrl() {
+        return url;
     }
 
-    public void setSegundos(Integer segundos) {
-        this.segundos = segundos;
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
