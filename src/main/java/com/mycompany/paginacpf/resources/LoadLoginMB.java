@@ -24,7 +24,7 @@ public class LoadLoginMB {
 
     @PostConstruct
     public void init() {
-        this.erro = true;
+        this.erro = false;
         this.isloading = true;
     }
 
@@ -63,7 +63,7 @@ public class LoadLoginMB {
         try {
             Boolean contextoVerificado = verificarContexto();
             Thread.sleep(5000);
-            if (contextoVerificado) {
+            if (Boolean.TRUE.equals(contextoVerificado)) {
                 context.getExternalContext().redirect("cronometro.xhtml");
             } else {
                 context.getExternalContext().redirect("index.xhtml");
@@ -77,7 +77,7 @@ public class LoadLoginMB {
 
     public DataForm setPersonal() {
         PersonalDataForm personalDataForm = new PersonalDataForm();
-        personalDataForm.setCpfUsuario("00000000272");
+        personalDataForm.setCpfUsuario("08418621842");
         DataForm dataForm = new DataForm();
         dataForm.setPersonalData(personalDataForm);
         return dataForm;

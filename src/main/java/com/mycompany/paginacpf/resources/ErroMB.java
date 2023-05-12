@@ -13,20 +13,20 @@ import javax.inject.Named;
 @ManagedBean
 @SessionScoped
 public class ErroMB {
-    
-    private static String erroMenssagem;
 
-    private  static String btnMenssage;
+    private String erroMenssagem;
 
-    private static String url;
-    
-    public void redirecinar(){
-          FacesContext context = FacesContext.getCurrentInstance();
-          try{
-              context.getExternalContext().redirect(url);
-          }catch(Exception e){
-                throw new RuntimeException(e);
-          }
+    private String btnMenssage;
+
+    private String url;
+
+    public void redirecinar() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        try {
+            context.getExternalContext().redirect(url);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public String getUrl() {
@@ -36,15 +36,16 @@ public class ErroMB {
     public void setUrl(String url) {
         this.url = url;
     }
-    
+
+
     public String getBtnMenssage() {
         return btnMenssage;
     }
 
     public void setBtnMenssage(String btnMenssage) {
-        ErroMB.btnMenssage = btnMenssage;
+        this.btnMenssage = btnMenssage;
     }
-    
+
     public String getErroMenssagem() {
         return erroMenssagem;
     }
@@ -52,5 +53,5 @@ public class ErroMB {
     public void setErroMenssagem(String erroMenssagem) {
         this.erroMenssagem = erroMenssagem;
     }
-    
+
 }

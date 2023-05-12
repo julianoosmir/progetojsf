@@ -33,10 +33,16 @@ public class LoginMB {
     private boolean redirecionar;
     private String url;
 
+    private String erroMenssagem;
+
+    private String btnMenssage;
+
+
     @PostConstruct
     public void init() {
         this.campoCpf = false;
         this.redirecionar = false;
+      //  setTelaErroMsg();
         try {
 
             this.erros = new HashMap<String, Boolean>();
@@ -55,7 +61,14 @@ public class LoginMB {
             System.out.println("Erro ao carregar mensagens" + e);
         }
     }
+    private void setTelaErroMsg(){
+        setErroMenssagem("Desculpe, o serviço de identificação de CNPJ"
+                + " está temporariamente indisponível no momento."
+                + " Por favor, tente novamente mais tarde");
 
+        setUrl("index.xhtml");
+        setBtnMenssage("voltar");
+    }
     public String verificarCampo() {
         this.esperanca = this.cpfCnpj.replaceAll("\\.|-|/", "");
         ;
@@ -67,9 +80,46 @@ public class LoginMB {
             }
         }
         if (this.cpf != null && validarDadosCpf() && validarFormatocnpj(this.cpfCnpj)) {
-            doEfetuarLoginID();
+            redirecinarLoginID();
         }
         return "sucesso";
+    }
+    private void telaDeErroWhiteList() {
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        try {
+            setErroMenssagem("Desculpe, o serviço de identificação de CNPJ"
+                    + " está temporariamente indisponível no momento."
+                    + " Por favor, tente novamente mais tarde");
+
+
+            setUrl("index.xhtml");
+            setBtnMenssage("voltar");
+            context.getExternalContext().redirect("tela_erro_whitelist.xhtml");
+        } catch (Exception e) {
+
+        }
+    }
+    private void redirecinarLoginID() {
+        if (firstLogin()) {
+            redirectToEmail();
+        } else {
+            doEfetuarLoginID();
+        }
+
+    }
+
+    private void redirectToEmail() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        try {
+            context.getExternalContext().redirect("tela_email.xhtml");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private boolean firstLogin() {
+        return false;
     }
 
     public boolean validarDadosCnpj() {
@@ -106,24 +156,30 @@ public class LoginMB {
     }
 
     private void doEfetuarLoginID() {
+        FacesContext context = FacesContext.getCurrentInstance();
         this.setUrl("https://login.dsv.bradescoseguros.com.br/nidp/idff/sso?id=secure_name_pasword_form_pneg&sid=0&option=credential&sid=0&target=https%3A%2F%2Fwwwn.dsv.bradescoseguros.com.br%2Fpnegocios%2Fwps%2Fmyportal%2Fportalnegocios%2Farealogada%2F");
         this.redirecionar = this.campoCpf;
+        try {
+            context.getExternalContext().redirect("redirecinar_login.xhtml");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void doEfetuarLoginAsIs() {
 
-        this.telaDeErro();
+        this.telaDeErroWhiteList();
     }
 
     private void telaDeErro() {
         FacesContext context = FacesContext.getCurrentInstance();
-           ErroMB erroMB = new ErroMB();
-            
+        ErroMB erroMB = new ErroMB();
+
         try {
             erroMB.setErroMenssagem("Desculpe, o serviço de identificação de CNPJ"
                     + " está temporariamente indisponível no momento."
                     + " Por favor, tente novamente mais tarde");
-            
+
             erroMB.setUrl("index.xhtml");
             erroMB.setBtnMenssage("voltar");
             context.getExternalContext().redirect("tela_erro.xhtml");
@@ -246,5 +302,20 @@ public class LoginMB {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+    public String getErroMenssagem() {
+        return erroMenssagem;
+    }
+
+    public void setErroMenssagem(String erroMenssagem) {
+        this.erroMenssagem = erroMenssagem;
+    }
+
+    public String getBtnMenssage() {
+        return btnMenssage;
+    }
+
+    public void setBtnMenssage(String btnMenssage) {
+        this.btnMenssage = btnMenssage;
     }
 }

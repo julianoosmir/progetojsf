@@ -8,7 +8,7 @@
 
     <h:head>
         <title>BSPN-IntranetCorretor</title>
-        <link rel="stylesheet" type="text/css" href="./includes/css/styles.css"/>
+        <link rel="stylesheet" type="text/css" href="./includes/css/tela_email.css"/>
         <script src="./includes/js/jquery-3.4.1.min.js"></script>
         <script src="./includes/js/jquery.mask.js"></script>
     </h:head>
@@ -21,26 +21,23 @@
                     <h:form id="formLogin_Corretor">
 
                         <h1><h:outputText id="h1" value="Acesso Corretor - Intranet"/></h1>
-                        <h3><h:outputText id="h2" value="Insira seu endereço de e-mail para receber as instruções sobre como efetuar o primeiro acesso ao Portal de Negócios."/></h3>
+                        <h3><h:outputText  value="Insira seu endereço de e-mail para receber as instruções sobre como efetuar o primeiro acesso ao Portal de Negócios."/></h3>
 
-                        <div class="bs-form_control  #{EmailMB.erros.cpfcnpj?'bs-has-error':null}">
+                        <div class="bs-form_control  #{emailMB.erros.invalido?'bs-has-error':null}">
 
                             <h:outputText id="bs_login_cpf_cnpj" value="Email"/>
-                            <h:inputText id="email" label="Digite o email" value="#{EmailMB.email}" required="true"
-                                         onclick="mask_cpfouCnpj();">
+                            <h:inputText id="email" label="Digite o email" value="#{emailMB.email}" required="true">
 
                             </h:inputText>
 
                             <span id="msg_erro" class="bs_login_error_mensagens">
-                                <h:outputLabel value="#{EmailMB.mensagens.cpfcnpj}"/>
+                                <h:outputLabel value="#{emailMB.mensagens.invalido}"/>
                             </span>
-                            <div>&nbsp;</div>
 
                             <br/>
                             <h:panelGroup>
-                                <h:commandButton value="Acessar" action="#{EmailMB.verificarCampo}"/>
+                                <h:commandButton value="Acessar" action="#{emailMB.verificarCampo}"/>
                             </h:panelGroup>
-
 
                         </div>
 
@@ -57,29 +54,5 @@
                 </div>
             </div>
         </div>
-
-        <script type="text/javascript">
-
-            function mask_cpf() {
-
-                var optionsCpf = {
-                    onKeyPress: function (cpf, ev, el, op) {
-                        $('#formLogin_Corretor\\email').mask("A", {
-                            translation: {
-                                "A": {pattern: /[\w@\-.+]/, recursive: true}
-                            }
-                        });
-                    }
-                };
-                $('#formLogin_Corretor\\email').mask("A", {
-                    translation: {
-                        "A": {pattern: /[\w@\-.+]/, recursive: true}
-                    }
-                });
-            }
-
-
-        </script>
-
     </h:body>
 </html>

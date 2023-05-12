@@ -21,10 +21,10 @@
                     <div class="bs-form_control  bs-has-error}">
 
                   <span id="msg_erro_whitelist" class="bs_login_error_mensagens">
-                      <h:outputLabel value="#{erroMB.erroMenssagem}"/>
+                      <h:outputLabel value="#{loginMB.erroMenssagem}"/>
                   </span>
                         <div>&nbsp;</div>
-                        <h:commandButton id="botao"  action="#{erroMB.redirecinar}"/>
+                        <h:commandButton id="botao" value="#{loginMB.btnMenssage}" action="#{loginMB.limparTela}"/>
                     </div>
 
                     <div class="aviso">

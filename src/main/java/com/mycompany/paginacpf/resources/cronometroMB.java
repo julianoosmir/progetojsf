@@ -41,7 +41,7 @@ public class cronometroMB {
         FacesContext context = FacesContext.getCurrentInstance();
         try {
             context.getExternalContext().redirect("loading_finalizar.xhtml");
-        } catch (Exception e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

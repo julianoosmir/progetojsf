@@ -3,6 +3,7 @@ package com.mycompany.paginacpf.resources;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -40,8 +41,25 @@ public class EmailMB {
     }
 
     public String verificarCampo() {
-
+        if(!emailValidator(this.email)){
+            isEmailInvalido();
+        };
         return "sucesso";
+    }
+
+    private void isEmailInvalido() {
+        String invalido = "invalido";
+        this.erros.put(invalido, true);
+        this.mensagens.put(invalido, "Email Invalido.");
+    }
+
+    public boolean emailValidator(String emailAddress) {
+        String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+
+        return Pattern.compile(regexPattern)
+                .matcher(emailAddress)
+                .matches();
     }
 
     public Map<String, Boolean> getErros() {
